@@ -1,17 +1,18 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss'],
   
-  // Matikan SSR agar menghasilkan SPA statis murni yang ramah GitHub Pages
+  // Matikan SSR agar menghasilkan SPA statis murni
   ssr: false,
 
-  // PENTING UNTUK NUXT 4: baseURL dan buildAssetsDir sekarang wajib berada di ROOT (luar objek app)
-  baseURL: '/portofolio_cerdas/',
-  buildAssetsDir: '_nuxt',
+  app: {
+    // Memastikan router mencari sub-folder repository lu yang benar
+    baseURL: '/portofolio_cerdas/',
+    // Kembalikan ke default '_nuxt' agar digabungkan secara benar dengan baseURL di atas
+    buildAssetsDir: '_nuxt'
+  },
 
   experimental: {
-    // Menghindari eror 404 pencarian file payload JSON di server statis
     payloadExtraction: false
   }
 })
